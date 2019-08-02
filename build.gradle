@@ -15,7 +15,7 @@ tasks.withType(JavaCompile) {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'tech.yojigen.scriptboorutagcn.Main'
+        attributes 'Main-Class': 'tech.yojigen.boorutagcn.Main'
     }
     from {
         configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
