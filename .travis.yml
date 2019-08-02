@@ -14,12 +14,14 @@ script:
 
 after_success:
   - cd ./tags
+  - echo tags.4cy.me >> cname
+  - echo tags.yojigen.tech >> cname
   - git init
   - git config --global user.name "某亚瑟"
   - git config --global user.email "mouyase@qq.com"
   - git add .
   - git commit -m "Update"
-  - git push --force "https://mouyase:${GIT_TOKEN}@github.com/mouyase/BooruTags-CN.git" master:tags
+  - git push --force "https://mouyase:${GIT_TOKEN}@github.com/mouyase/BooruTags-CN.git" master:gh-pages
 
 branches:
   only:
