@@ -1,0 +1,24 @@
+language: java
+
+jdk:
+  - openjdk8
+
+install:
+  - chmod +x gradlew
+  - ./gradlew jar
+
+script:
+  - java -jar ./build/libs/BooruTag-CN.jar
+
+after_success:
+  - cd ./tags
+  - git init
+  - git config --global user.name "某亚瑟"
+  - git config --global user.email "mouyase@qq.com"
+  - git add .
+  - git commit -m "Update"
+  - git push --force "https://mouyase:${GIT_TOKEN}@github.com/4cy/BooruTag-CN.git" master:tags
+
+branches:
+  only:
+    - master
