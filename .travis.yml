@@ -19,7 +19,7 @@ after_success:
   - git config --global user.email "mouyase@qq.com"
   - git add .
   - git commit -m "Update"
-  - git push --force "https://mouyase:${GIT_TOKEN}@github.com/4cy/BooruTags-CN.git" master:tags
+  - git push --force "https://mouyase:${GIT_TOKEN}@github.com/mouyase/BooruTags-CN.git" master:tags
 
 branches:
   only:
