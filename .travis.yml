@@ -14,8 +14,7 @@ script:
 
 after_success:
   - cd ./tags
-  - echo tags.4cy.me >> cname
-  - echo tags.yojigen.tech >> cname
+  - echo tags.4cy.me >> CNAME
   - git init
   - git config --global user.name "某亚瑟"
   - git config --global user.email "mouyase@qq.com"
