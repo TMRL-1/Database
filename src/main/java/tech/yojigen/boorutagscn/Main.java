@@ -31,7 +31,7 @@ public class Main {
         Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         OkHttpClient client = new OkHttpClient.Builder().connectTimeout(5, TimeUnit.MINUTES).readTimeout(10, TimeUnit.MINUTES).build();
         System.out.println("获取Tag数据");
-        Request request = new Request.Builder().url("https://yande.re/tag.json?limit=0&order=name").build();
+        Request request = new Request.Builder().url("https://yande.re/tag.json?limit=10&order=name").build();
         Response response = client.newCall(request).execute();
         String jsonTags = response.body().string();
         System.out.println("解析Tag数据");
@@ -48,7 +48,7 @@ public class Main {
         System.out.println("解析翻译数据");
         Map<String, String> translateMap = new HashMap<>();
         while (translateMatcher.find()) {
-            translateMap.put(translateMatcher.group(1), translateMatcher.group(2));
+            translateMap.put(translateMatcher.group(1), translateMatcher.group(2) + "[" + translateMatcher.group(1) + "]");
         }
         if (!Files.exists(Paths.get("./tags"), LinkOption.NOFOLLOW_LINKS)) {
             Files.createDirectory(Paths.get("./tags"));
@@ -65,5 +65,17 @@ public class Main {
             }
         }
         System.out.println("数据写入完成");
+    }
+}
+
+class TagBean {
+    String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
