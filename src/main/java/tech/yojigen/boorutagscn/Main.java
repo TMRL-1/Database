@@ -31,6 +31,31 @@ public class Main {
         Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         OkHttpClient client = new OkHttpClient.Builder().connectTimeout(5, TimeUnit.MINUTES).readTimeout(10, TimeUnit.MINUTES).build();
         System.out.println("获取Tag数据");
+        Request request = new Request.Builder().url("https://yande.re/tag.json?order=count&&limit=0").removeHeader("User-Agent").addHeader("User-Agent", USER_AGENT).build();
+        Response response = client.newCall(request).execute();
+        String jsonTags = response.body().string();
+        System.out.println("解析Tag数据");
+        Type type = new TypeToken<List<TagBean>>() {
+        }.getType();
+        List<TagBean> tags = gson.fromJson(jsonTags, type);
+        System.out.println("获取翻译数据");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (TagBean tag : tags) {
+            Matcher matcher = tagsPattern.matcher(tag.getName());
+            if (matcher.find()) {
+                stringBuilder.append(tag.getName() + "\n");
+            }
+        }
+        Files.write(Paths.get("tags.txt"), stringBuilder.toString().getBytes(StandardCharsets.UTF_8));
+        System.out.println("数据写入完成");
+    }
+
+    public static void old() throws IOException {
+        String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36";
+        Pattern tagsPattern = Pattern.compile("^((?!\\|)[0-9a-zA-Z\\u0000-\\u00FF])+$");
+        Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(5, TimeUnit.MINUTES).readTimeout(10, TimeUnit.MINUTES).build();
+        System.out.println("获取Tag数据");
         Request request = new Request.Builder().url("https://yande.re/tag.json?order=name&&limit=0").removeHeader("User-Agent").addHeader("User-Agent", USER_AGENT).build();
         Response response = client.newCall(request).execute();
         String jsonTags = response.body().string();
