@@ -75,7 +75,10 @@ public class Main {
                 }
             }
         }
-        Files.write(Paths.get("./index/js/tags.js"), stringBuilder.toString().getBytes(StandardCharsets.UTF_8));
+        if (!Files.exists(Paths.get("./tags/js"), LinkOption.NOFOLLOW_LINKS)) {
+            Files.createDirectory(Paths.get("./tags/js"));
+        }
+        Files.write(Paths.get("./tags/js/tags.js"), stringBuilder.toString().getBytes(StandardCharsets.UTF_8));
         System.out.println("数据写入完成");
     }
 }
