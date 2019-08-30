@@ -33,7 +33,7 @@ public class Main {
         Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         OkHttpClient client = new OkHttpClient.Builder().connectTimeout(5, TimeUnit.MINUTES).readTimeout(10, TimeUnit.MINUTES).build();
         System.out.println("获取Tag数据");
-        Request request = new Request.Builder().url("https://yande.re/tag.json?order=count&&limit=100").removeHeader("User-Agent").addHeader("User-Agent", USER_AGENT).build();
+        Request request = new Request.Builder().url("https://yande.re/tag.json?order=count&limit=0").removeHeader("User-Agent").addHeader("User-Agent", USER_AGENT).build();
         Response response = client.newCall(request).execute();
         String jsonTags = response.body().string();
         System.out.println("解析Tag数据");
