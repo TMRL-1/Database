@@ -13,15 +13,14 @@ script:
   - java -jar ./build/libs/BooruTags-CN.jar
 
 after_success:
-  - mkdir tags
-  - cp tags.txt tags/tags.txt
-  - cd tags
+  - cd ./tags
+  - echo tags.4cy.me >> CNAME
   - git init
   - git config --global user.name "某亚瑟"
   - git config --global user.email "mouyase@qq.com"
   - git add .
   - git commit -m "Update"
-  - git push --force "https://mouyase:${GIT_TOKEN}@github.com/mouyase/BooruTags-CN.git" master:en_us
+  - git push --force "https://mouyase:${GIT_TOKEN}@github.com/mouyase/BooruTags-CN.git" master:gh-pages
 
 branches:
   only:

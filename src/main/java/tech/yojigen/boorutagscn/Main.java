@@ -25,38 +25,15 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36";
-        Pattern tagsPattern = Pattern.compile("^((?!\\|)[0-9a-zA-Z\\u0000-\\u00FF])+$");
-        Gson gson = new GsonBuilder().disableHtmlEscaping().create();
-        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(5, TimeUnit.MINUTES).readTimeout(10, TimeUnit.MINUTES).build();
-        System.out.println("获取Tag数据");
-        Request request = new Request.Builder().url("https://yande.re/tag.json?order=count&&limit=0").removeHeader("User-Agent").addHeader("User-Agent", USER_AGENT).build();
-        Response response = client.newCall(request).execute();
-        String jsonTags = response.body().string();
-        System.out.println("解析Tag数据");
-        Type type = new TypeToken<List<TagBean>>() {
-        }.getType();
-        List<TagBean> tags = gson.fromJson(jsonTags, type);
-        System.out.println("获取翻译数据");
-        StringBuilder stringBuilder = new StringBuilder();
-        for (TagBean tag : tags) {
-            Matcher matcher = tagsPattern.matcher(tag.getName());
-            if (matcher.find()) {
-                stringBuilder.append(tag.getName() + "\n");
-            }
-        }
-        Files.write(Paths.get("tags.txt"), stringBuilder.toString().getBytes(StandardCharsets.UTF_8));
-        System.out.println("数据写入完成");
-    }
 
-    public static void old() throws IOException {
+    public static void main(String[] args) throws IOException {
+        String DOC_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTUlGa0rPVJ0KQ9a0EIGszpOQQSRI-DhRC21Uypl5nW-t22fAaJ4GyAfkjjeoz1XJ6ECMnZndH_UZo/pubhtml";
         String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36";
         Pattern tagsPattern = Pattern.compile("^((?!\\|)[0-9a-zA-Z\\u0000-\\u00FF])+$");
         Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         OkHttpClient client = new OkHttpClient.Builder().connectTimeout(5, TimeUnit.MINUTES).readTimeout(10, TimeUnit.MINUTES).build();
         System.out.println("获取Tag数据");
-        Request request = new Request.Builder().url("https://yande.re/tag.json?order=name&&limit=0").removeHeader("User-Agent").addHeader("User-Agent", USER_AGENT).build();
+        Request request = new Request.Builder().url("https://yande.re/tag.json?order=count&&limit=100").removeHeader("User-Agent").addHeader("User-Agent", USER_AGENT).build();
         Response response = client.newCall(request).execute();
         String jsonTags = response.body().string();
         System.out.println("解析Tag数据");
@@ -64,11 +41,11 @@ public class Main {
         }.getType();
         List<TagBean> tags = gson.fromJson(jsonTags, type);
         System.out.println("获取翻译数据");
-        request = new Request.Builder().url("https://docs.google.com/document/d/e/2PACX-1vQSeSI4PU70eBoonfjiNpzQY66VqpwZoJDW4fUS8piXTTpQe57LKDb1KRZnRZEOtwH9Cvhq1dW2hLVp/pub").removeHeader("User-Agent").addHeader("User-Agent", USER_AGENT).build();
+        request = new Request.Builder().url(DOC_URL).removeHeader("User-Agent").addHeader("User-Agent", USER_AGENT).build();
         response = client.newCall(request).execute();
         String translateText = StringEscapeUtils.unescapeHtml4(response.body().string());
 //        System.out.println(translateText);
-        Pattern translatePattern = Pattern.compile("<p class=\"c1\"><span class=\"c0\">(.+?)\\|(.+?)<\\/span><\\/p>");
+        Pattern translatePattern = Pattern.compile("<td class=\"s0\">([0-9a-zA-Z\\u0000-\\u00FF]+?)<\\/td><td class=\"s1\">(.+?)<\\/td>");
         Matcher translateMatcher = translatePattern.matcher(translateText);
         System.out.println("解析翻译数据");
         Map<String, String> translateMap = new HashMap<>();
