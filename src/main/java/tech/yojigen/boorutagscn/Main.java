@@ -26,7 +26,7 @@ import okhttp3.Response;
 
 public class Main {
     private static final String TEMPLATE_JS_DANMAKU = "word_arr.push({x:random(0,width),y:random(0,height),text:'%s',size:random(txt_min_size,txt_max_size)});\n";
-    private static final String URL_TAGS = "https://yande.re/tag.json?order=count&limit=110";
+    private static final String URL_TAGS = "https://yande.re/tag.json?order=count&limit=0";
     private static final String URL_EXCEL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTUlGa0rPVJ0KQ9a0EIGszpOQQSRI-DhRC21Uypl5nW-t22fAaJ4GyAfkjjeoz1XJ6ECMnZndH_UZo/pubhtml";
 
     public static void main(String[] args) throws IOException {
