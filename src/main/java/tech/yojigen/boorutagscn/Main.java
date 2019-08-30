@@ -27,7 +27,7 @@ import okhttp3.Response;
 public class Main {
     private static final String TEMPLATE_JS_DANMAKU = "word_arr.push({x:random(0,width),y:random(0,height),text:'%s',size:random(txt_min_size,txt_max_size)});\n";
     private static final String URL_TAGS = "https://yande.re/tag.json?order=count&limit=0";
-    private static final String URL_EXCEL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTUlGa0rPVJ0KQ9a0EIGszpOQQSRI-DhRC21Uypl5nW-t22fAaJ4GyAfkjjeoz1XJ6ECMnZndH_UZo/pubhtml";
+    private static final String URL_EXCEL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTUlGa0rPVJ0KQ9a0EIGszpOQQSRI-DhRC21Uypl5nW-t22fAaJ4GyAfkjjeoz1XJ6ECMnZndH_UZo/pub";
 
     public static void main(String[] args) throws IOException {
         String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36";
@@ -47,7 +47,7 @@ public class Main {
         response = client.newCall(request).execute();
         String translateText = StringEscapeUtils.unescapeHtml4(response.body().string());
 //        System.out.println(translateText);
-        Pattern translatePattern = Pattern.compile("<td class=\"s0\">([0-9a-zA-Z\\u0000-\\u00FF]+?)<\\/td><td class=\"s1\">(.+?)<\\/td>");
+        Pattern translatePattern = Pattern.compile("<td[\\s0-9a-zA-Z\\u0000-\\u00FF]*?class=\"s0\"[\\s0-9a-zA-Z\\u0000-\\u00FF]*?>([0-9a-zA-Z\\u0000-\\u00FF]+?)<\\/td>[\\s0-9a-zA-Z\\u0000-\\u00FF]*?<td[\\s0-9a-zA-Z\\u0000-\\u00FF]*?class=\"s1\"[\\s0-9a-zA-Z\\u0000-\\u00FF]*?>(.+?)<\\/td>");
         Matcher translateMatcher = translatePattern.matcher(translateText);
         System.out.println("解析翻译数据");
         Map<String, String> translateMap = new HashMap<>();
