@@ -13,8 +13,8 @@ script:
   - java -jar ./build/libs/BooruTags-CN.jar
 
 after_success:
-  - cp index/index.html tags/index.html
-  - cp index/js/tags.js tags/js/tags.js
+  - cp ./index/index.html ./tags/index.html
+  - cp ./index/js/tags.js ./tags/js/tags.js
   - cd ./tags
   - echo tags.4cy.me >> CNAME
   - git init
