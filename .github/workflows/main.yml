@@ -36,11 +36,11 @@ jobs:
     - name: Deploy to gh-pages
       run: |
         cd Creater
-        cd public
-        git config --global user.email "i@yojigen.tech"
-        git config --global user.name "mouyase"
+        cd gradle
+        git config --global user.email "server@yojigen.tech"
+        git config --global user.name "ServerChan"
         git init
         git add .
         git commit -m "Server commit"
-        git remote add origin https://${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git
+        git remote add origin https://${{ secrets.GITHUB_TOKEN }}@github.com/BooruTagTranslation/Database.git
         git push origin gh-pages -f
