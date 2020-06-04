@@ -37,6 +37,8 @@ jobs:
       run: |
         cd Creater
         cd public
+        git config --global user.email "server@yojigen.tech"
+        git config --global user.name "ServerChan"
         git init
         git add .
         git commit -m "Server commit"
