@@ -25,10 +25,11 @@ jobs:
     - name: Checkout creater
       run: |
         git clone https://github.com/BooruTagTranslation/Creater.git
-        cd Creater
 
     - name: Build tags
       run: |
+        ls -la
+        cd Creater
         sudo chmod +x gradlew
         ./gradlew run
 
