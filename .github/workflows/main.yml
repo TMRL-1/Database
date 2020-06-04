@@ -42,5 +42,5 @@ jobs:
         git init
         git add .
         git commit -m "Server commit"
-        git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/BooruTagTranslation/Database.git"
-        git push --force --quiet master:gh-pages
+        git remote add origin https://${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git
+        git push origin gh-pages -f
