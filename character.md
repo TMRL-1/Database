@@ -1,2 +1,3 @@
-# BooruTagsCNTranslateDB
-Booru图站中文标签库
+# 角色 Character
+原文|翻译
+-|-

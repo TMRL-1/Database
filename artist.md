@@ -1,2 +1,3 @@
-# BooruTagsCNTranslateDB
-Booru图站中文标签库
+# 画师 Artist
+原文|翻译
+-|-

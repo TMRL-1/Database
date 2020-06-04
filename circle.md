@@ -1,2 +1,3 @@
-# BooruTagsCNTranslateDB
-Booru图站中文标签库
+# 社团 Circle
+原文|翻译
+-|-

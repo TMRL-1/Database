@@ -1,2 +1,3 @@
-# BooruTagsCNTranslateDB
-Booru图站中文标签库
+# 错误 Faults
+原文|翻译
+-|-

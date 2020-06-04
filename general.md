@@ -1,0 +1,20 @@
+# 常规 General
+原文|翻译
+-|-
+animal_ears|兽耳
+maid|女仆
+thighhighs|过膝袜
+pantsu|胖次
+loli|萝莉
+pussy_juice|妹汁
+panty_pull|半脱胖次
+pussy|小穴
+bra|胸罩
+sex|性交
+feet|脚
+ass_grab|抓屁股
+cleavage|乳沟
+nipples|乳头
+seifuku|制服
+dress|连衣裙
+heels|鞋跟
