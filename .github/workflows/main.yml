@@ -35,6 +35,11 @@ jobs:
 
     - name: Deploy to gh-pages
       run: |
-        ls -la
+        cd Creater
+        cd public
+        git init
+        git add .
+        git commit -m "Server commit"
+        git push --force --quiet "https://${GITHUB_TOKEN}@github.com/BooruTagTranslation/Database.git" master:gh-pages
       env:
-        GITHUB_TOKEN: ${{ secrets.MY_PERSONAL_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
