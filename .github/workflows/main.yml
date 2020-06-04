@@ -22,11 +22,13 @@ jobs:
       with:
         java-version: 1.8
 
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Checkout creater
       run: |
         git clone https://github.com/BooruTagTranslation/Creater.git
         cd Creater
+
+    - name: Build tags
+      run: |
         sudo chmod +x gradlew
         ./gradlew run
 
