@@ -2,3 +2,4 @@
 原文|翻译
 -|-
 girls_frontline|少女前线
+girls_und_panzer|少女与战车
