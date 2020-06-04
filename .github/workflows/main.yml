@@ -31,12 +31,12 @@ jobs:
         ls -la
         cd Creater
         sudo chmod +x gradlew
-
+        ./gradlew run
 
     - name: Deploy to gh-pages
       run: |
         cd Creater
-        cd gradle
+        cd public
         git config --global user.email "server@yojigen.tech"
         git config --global user.name "ServerChan"
         git init
