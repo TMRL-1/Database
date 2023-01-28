@@ -24,7 +24,7 @@ jobs:
 
     - name: Checkout creater
       run: |
-        git clone https://github.com/BooruTagTranslation/Creater.git
+        git clone https://github.com/TMRL-1/Creater.git
 
     - name: Build tags
       run: |
@@ -42,6 +42,6 @@ jobs:
         git init
         git add .
         git commit -m "Server commit"
-        git push --force --quiet "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/BooruTagTranslation/Database.git" master:gh-pages
+        git push --force --quiet "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/TMRL-1/Database.git" master:gh-pages
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
